@@ -1,54 +1,110 @@
-# LatestAiDevelopment Crew
 
-Welcome to the LatestAiDevelopment Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+# CrewAI Tech Trends Automation 📰🤖
 
-## Installation
+An AI-powered workflow built with [CrewAI](https://github.com/joaomdmoura/crewai) that automates the discovery, summarization, and formatting of the latest trends in technology — including DevOps, Kubernetes, AWS, GitOps, Terraform, System Design, AI Agents, and Drones.
 
-Ensure you have Python >=3.10 <3.13 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
+## 📌 What It Does
 
-First, if you haven't already, install uv:
+This project uses a multi-agent architecture to:
 
-```bash
-pip install uv
+- 🔍 **Search** for recent, relevant articles across defined tech domains
+- ✍️ **Parse and summarize** key insights from each source
+- 🗂️ **Organize content** into structured markdown by topic
+- 🎨 **Format and style** the final result into a polished HTML newsletter
+
+The goal is to help developers and tech-curious readers stay informed — with minimal effort and maximum signal.
+
+---
+
+## 🛠️ Tech Stack
+
+- **CrewAI** — for managing the AI agents and task flow
+- **OpenAI GPT-4** — for summarization and formatting
+- **Serper API** — for web search
+- **CrewAI Tools** — including `ScrapeWebsiteTool`, `FileWriterTool`, `FileReadTool`
+- **Markdown + CSS** — for clean, shareable output
+
+---
+
+## 📂 Folder Structure
+
+```
+.
+├── config/
+│   ├── agents.yaml         # Agent roles and goals
+│   ├── tasks.yaml          # Task definitions and execution context
+├── styles/
+│   └── newsletter.css      # Optional styling for HTML output
+├── outputs/
+│   ├── search_results.json
+│   ├── parsed_articles.json
+│   ├── summaries.json
+│   ├── daily_trends.md
+│   └── newsletter.html
+├── src/
+│   └── crew.py             # Main workflow launcher
+├── README.md
 ```
 
-Next, navigate to your project directory and install the dependencies:
+---
 
-(Optional) Lock the dependencies and install them by using the CLI command:
-```bash
-crewai install
+## 🚀 Getting Started
+
+1. Clone the repo  
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/crewai-tech-trends-automation
+   cd crewai-tech-trends-automation
+   ```
+
+2. Install dependencies  
+   *(use a virtualenv or conda environment)*  
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Set your API keys  
+   ```bash
+   export SERPER_API_KEY=your-serper-key
+   export OPENAI_API_KEY=your-openai-key
+   ```
+
+4. Run the automation  
+   ```bash
+   python src/crew.py
+   ```
+
+---
+
+## 📬 Sign Up for the Newsletter
+
+Want to get the updates this system generates?
+
+**Sign up here:**  
+👉 [http://si3mshady.github.io/flight-club-landing/](http://si3mshady.github.io/flight-club-landing/)
+
+---
+
+## 📌 Coming Soon
+
+- Email delivery
+- Retry logic for failed topics
+- Streamlit dashboard for visual previews
+- More CrewAI-powered workflows
+
+---
+
+## 🤝 Contributing
+
+Pull requests welcome! If you’ve got CrewAI ideas or want to extend this for other domains, open an issue or submit a PR.
+
+---
+
+## 📄 License
+
+MIT
+
+---
+
+*Built with 🤖 by [Elliott Arnold]*  
 ```
-### Customizing
 
-**Add your `OPENAI_API_KEY` into the `.env` file**
-
-- Modify `src/latest_ai_development/config/agents.yaml` to define your agents
-- Modify `src/latest_ai_development/config/tasks.yaml` to define your tasks
-- Modify `src/latest_ai_development/crew.py` to add your own logic, tools and specific args
-- Modify `src/latest_ai_development/main.py` to add custom inputs for your agents and tasks
-
-## Running the Project
-
-To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
-
-```bash
-$ crewai run
-```
-
-This command initializes the latest-ai-development Crew, assembling the agents and assigning them tasks as defined in your configuration.
-
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
-
-## Understanding Your Crew
-
-The latest-ai-development Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
-
-## Support
-
-For support, questions, or feedback regarding the LatestAiDevelopment Crew or crewAI.
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
-
-Let's create wonders together with the power and simplicity of crewAI.

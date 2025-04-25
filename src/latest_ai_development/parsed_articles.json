@@ -1,0 +1,12 @@
+Here is the dictionary with the topics and the corresponding article content or fallback summaries:
+
+```json
+{
+  "DevOps": "Cycode has added multiple artificial intelligence (AI) agents to its application security posture management (ASPM) capable of monitoring code and offering remediation suggestions.",
+  "GitOps": "Endor Labs today added a set of artificial intelligence (AI) agents to its platform, specifically trained to identify security defects in applications and suggest remediations.",
+  "Kubernetes": "Veracode today updated its risk management tool to provide integration with Kubernetes runtime environments, increased integration with code repositories to make it simpler to identify the origin of vulnerabilities and, available shortly, ...",
+  "AWS": "AWS introduces new EC2 instance families (C8gd, M8gd, R8gd) powered by Graviton4 processors with NVMe SSD storage, offering up to 30% better performance, ...",
+  "Terraform": "Terraform 1.10 improves handling secrets in state with ephemeral values · Protect data privacy in Amazon Bedrock with Vault · Preventative beats reactive: Modern ...",
+  "System Design": "Using diagrams to represent interactions in multipart systems can provide a faster way to design software improvements."
+}
+```

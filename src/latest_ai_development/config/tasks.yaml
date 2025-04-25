@@ -1,0 +1,62 @@
+search_trends:
+  description: >
+    Search for one recent, relevant, and content-rich blog post, product update, or news article (from the past 14 days) for each of these topics: 
+    DevOps, GitOps, Kubernetes, AWS, Terraform, System Design, AI agents, and Drones.
+    Prioritize real articles with full content and ignore homepage or category pages (like aws.amazon.com/new or kubernetes.io/blog).
+    Return only direct article URLs, titles, and a 1–2 sentence preview of the content.
+    You are required to find infom on each topic - no exception
+  agent: trends_agent
+  expected_output: >
+    A list of topic → { title, preview, url } for 8 topics.
+  output_file: "search_results.json"
+
+parse_content:
+  description: >
+    Load URLs from "search_results.json". Extract full article content from each URL using the web parser. 
+    If parsing fails, use the title and meta description.
+    Include content on all topics in search_trends 
+     Ignore pages with less than 200 words of usable content.
+    Truncate all valid articles to the first 500 words max.
+  agent: trends_agent
+  expected_output: >
+    A dictionary: topic → article content or fallback summary.
+  context: [search_trends]
+  output_file: "parsed_articles.json"
+
+summarize_content:
+  description: >
+    Load article content from "parsed_articles.json". Create a short summary (under 150 words) for each topic.
+    Focus on key developments, announcements, or takeaways. Avoid linking unless necessary.
+  agent: trends_agent
+  expected_output: >
+    A dictionary: topic → concise summary text.
+  context: [parse_content]
+  output_file: "summaries.json"
+
+categorize_content:
+  description: >
+    Load summaries from "summaries.json". Organize the summaries by topic. Each should have a topic header and the summary below it.
+    For any missing or invalid content, add a note like "No meaningful update today." Save the final structured content to "daily_trends.md".
+  agent: trends_agent
+  expected_output: >
+    Well-formatted markdown grouped by topic.
+  context: [summarize_content]
+  output_file: "daily_trends.md"
+
+save_results:
+  description: >
+    Confirm that the content was saved successfully to "daily_trends.md".
+  agent: trends_agent
+  expected_output: >
+    Confirmation that "daily_trends.md" has been saved.
+  context: [categorize_content]
+
+create_newsletter:
+  description: >
+    Load "parsed_articles.json" and convert it into a styled HTML newsletter.
+    Also load "newsletter.css" and apply it as inline styles using a <style> tag in the <head> of the HTML.
+    Focus on readability, nice spacing, and proper headers.
+  agent: newsletter_agent
+  expected_output: >
+    A clean, styled HTML newsletter saved as "newsletter.html".
+  output_file: "newsletter.html"
